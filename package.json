@@ -1,0 +1,33 @@
+{
+  "name": "buckets",
+  "version": "0.1.0",
+  "bin": {
+    "buckets": "bin/buckets.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "clean": "skripts clean src --pattern '*.js'; skripts clean src --pattern '*.map'",
+    "deploy": "npm run build && cdk deploy --no-version-reporting --strict",
+    "format": "skripts prettier",
+    "lint": "skripts tslint",
+    "synth": "npm run build && cdk synth buckets-stack --no-version-reporting --strict"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-s3": "^1.8.0",
+    "@aws-cdk/core": "^1.8.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "^1.8.0",
+    "husky": "^3.0.5",
+    "skripts": "0.0.22",
+    "tslint": "^5.20.0",
+    "typescript": "~3.6.3"
+  },
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "skripts lint-staged"
+    }
+  }
+}
