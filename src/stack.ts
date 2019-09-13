@@ -13,32 +13,22 @@ export class MyStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
-    // tslint:disable-next-line
-    new Bucket(this, "RockyDev", {
-      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
-      bucketName: "rocky.dev",
-      encryption: BucketEncryption.S3_MANAGED,
-      publicReadAccess: false,
-      removalPolicy: RemovalPolicy.RETAIN
-    })
-
-    // tslint:disable-next-line
-    new Bucket(this, "WwwRockyDev", {
-      blockPublicAccess: new BlockPublicAccess({
-        blockPublicAcls: false,
-        blockPublicPolicy: true,
-        ignorePublicAcls: false,
-        restrictPublicBuckets: true
-      }),
-      bucketName: "www.rocky.dev",
-      encryption: BucketEncryption.S3_MANAGED,
-      publicReadAccess: false,
-      removalPolicy: RemovalPolicy.RETAIN
-    })
+    this.createPrivate("RockyDev", "rocky.dev")
+    this.createPrivate("WwwRockyDev", "www.rocky.dev")
   }
+
+  private createPrivate = (id: string, bucketName: string) =>
+    new Bucket(this, id, {
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      bucketName,
+      encryption: BucketEncryption.S3_MANAGED,
+      publicReadAccess: false,
+      removalPolicy: RemovalPolicy.RETAIN
+    })
 }
 
 const app = new App()
 const stack = new MyStack(app, `${name}-stack`)
-stack.node.applyAspect(new Tag("Project", name))
 stack.node.applyAspect(new Tag("Creator", "serverless"))
+stack.node.applyAspect(new Tag("Project", name))
+stack.node.applyAspect(new Tag("Stage", process.env.STAGE || ""))

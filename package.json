@@ -22,7 +22,7 @@
     "husky": "^3.0.5",
     "skripts": "0.0.22",
     "tslint": "^5.20.0",
-    "typescript": "~3.6.3"
+    "typescript": "^3.6.3"
   },
   "private": true,
   "husky": {
