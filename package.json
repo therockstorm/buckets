@@ -14,15 +14,15 @@
     "synth": "npm run build && cdk synth buckets-stack --no-version-reporting --strict"
   },
   "dependencies": {
-    "@aws-cdk/aws-s3": "^1.18.0",
-    "@aws-cdk/core": "^1.18.0"
+    "@aws-cdk/aws-s3": "^1.28.0",
+    "@aws-cdk/core": "^1.28.0"
   },
   "devDependencies": {
-    "aws-cdk": "^1.18.0",
-    "husky": "^3.1.0",
-    "skripts": "0.4.2",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.3"
+    "aws-cdk": "^1.28.0",
+    "husky": "^4.2.3",
+    "skripts": "0.5.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
   },
   "private": true,
   "husky": {
