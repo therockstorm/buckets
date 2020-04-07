@@ -5,7 +5,7 @@ import {
   RemovalPolicy,
   Stack,
   StackProps,
-  Tag
+  Tag,
 } from "@aws-cdk/core"
 import { name } from "../package.json"
 
@@ -23,7 +23,7 @@ export class MyStack extends Stack {
       bucketName,
       encryption: BucketEncryption.S3_MANAGED,
       publicReadAccess: false,
-      removalPolicy: RemovalPolicy.RETAIN
+      removalPolicy: RemovalPolicy.RETAIN,
     })
 }
 
